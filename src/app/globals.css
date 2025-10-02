@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-custom-100: #e6f7f8;
+  --color-custom-200: #cceff1;
+  --color-custom-300: #b3e7ea;
+  --color-custom-400: #99dfe3;
+  --color-custom-500: #40c9cc;
+  --color-custom-600: #36b1b4;
+  --color-custom-700: #2c999c;
+  --color-custom-800: #228184;
+  --color-custom-900: #18696c;
+  --color-custom-1000: #0e5154;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), sans-serif;
+}
+
+/* GIF 호버 애니메이션을 위한 스타일 */
+.project-static-image {
+  animation-play-state: paused !important;
+  animation: none !important;
+}
+
+.project-static-image:hover {
+  animation-play-state: running !important;
+}
+
+/* 모든 GIF 이미지의 기본 애니메이션을 정지 */
+img[src$=".gif"] {
+  animation-play-state: paused !important;
+}
+
+img[src$=".gif"]:hover {
+  animation-play-state: running !important;
+}
