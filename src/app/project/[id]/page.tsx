@@ -37,27 +37,43 @@ export default function ProjectDetail() {
   return (
     <div className="min-h-screen bg-white">
       <header className="bg-white shadow-sm border-b">
-        <div className="max-w-6xl mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
+        <div className="max-w-full mx-auto px-4 py-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
             <button
               onClick={() => window.history.back()}
-              className="cursor-pointer text-custom-600 hover:text-white font-semibold px-4 py-2 rounded-lg bg-custom-100 hover:bg-custom-700 transition-colors">
-              포트폴리오로 돌아가기
+              className="cursor-pointer text-custom-600 hover:text-white font-semibold text-xs sm:text-base px-2 py-1.5 sm:px-4 sm:py-2 rounded-md bg-custom-100 hover:bg-custom-700 transition-colors w-full sm:w-auto whitespace-nowrap">
+              <span className="hidden sm:inline">포트폴리오로 돌아가기</span>
+              <span className="sm:hidden">돌아가기</span>
             </button>
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2 w-full sm:w-auto">
               {project.githubUrl && (
-                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors">
-                  GitHub 저장소
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-gray-100 text-gray-700 px-2 py-1.5 sm:px-4 sm:py-2 rounded-md hover:bg-gray-200 transition-colors text-xs sm:text-base flex-1 sm:flex-none text-center whitespace-nowrap">
+                  <span className="hidden sm:inline">GitHub 저장소</span>
+                  <span className="sm:hidden">GitHub</span>
                 </a>
               )}
               {project.liveUrl && (
-                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="bg-custom-500 text-white px-4 py-2 rounded-lg hover:bg-custom-700 transition-colors">
-                  배포 사이트
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-custom-500 text-white px-2 py-1.5 sm:px-4 sm:py-2 rounded-md hover:bg-custom-700 transition-colors text-xs sm:text-base flex-1 sm:flex-none text-center whitespace-nowrap">
+                  <span className="hidden sm:inline">배포 사이트</span>
+                  <span className="sm:hidden">사이트</span>
                 </a>
               )}
               {project.downloadUrl && (
-                <a href={project.downloadUrl} target="_blank" rel="noopener noreferrer" className="bg-custom-500 text-white px-4 py-2 rounded-lg hover:bg-custom-700 transition-colors">
-                  Download
+                <a
+                  href={project.downloadUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-custom-500 text-white px-2 py-1.5 sm:px-4 sm:py-2 rounded-md hover:bg-custom-700 transition-colors text-xs sm:text-base flex-1 sm:flex-none text-center whitespace-nowrap">
+                  <span className="hidden sm:inline">Download</span>
+                  <span className="sm:hidden">다운로드</span>
                 </a>
               )}
             </div>
@@ -67,8 +83,13 @@ export default function ProjectDetail() {
 
       <main className="max-w-4xl mx-auto px-4 py-12">
         <div className="mb-8">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">{project.title}</h1>
-          <p className="text-xl text-gray-600 mb-4">{project.duration}</p>
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-2 flex items-center">
+            {project.title}
+            <span className={`${project.soloOrTeam === "solo" ? "bg-orange-300 text-orange-800" : "bg-green-300 text-green-800"} ml-4 px-3 py-1.5 rounded-full text-lg font-normal`}>
+              {project.soloOrTeam === "solo" ? "개인 프로젝트" : "2인 팀 프로젝트 (프론트엔드 담당)"}
+            </span>
+          </h1>
+          <p className="text-xl text-gray-600 mb-2">{project.duration}</p>
           <p className="text-xl text-gray-600 mb-6">{project.description}</p>
         </div>
 
@@ -80,7 +101,7 @@ export default function ProjectDetail() {
 
         <div className="prose prose-lg max-w-none">
           <h2 className="text-2xl font-bold text-gray-900 mb-2">프로젝트 개요</h2>
-          <div className="text-gray-700 leading-relaxed">{project.content}</div>
+          <div className="text-gray-700 leading-relaxed whitespace-pre-line">{project.content}</div>
 
           <h2 className="text-2xl font-bold text-gray-900 mb-2 mt-12">기술 스택</h2>
           <div className="space-y-4">
@@ -128,7 +149,43 @@ export default function ProjectDetail() {
 
           <h2 className="text-2xl font-bold text-gray-900 mb-2 mt-12">주요 기능</h2>
           <div className="text-gray-700 leading-relaxed">
-            <p className="list-disc list-inside text-gray-700 space-y-2">{project.features?.map((feature) => <li key={feature}>{feature}</li>) || "추후 추가"}</p>
+            {project.features && Object.keys(project.features).length > 0 ? (
+              Object.entries(project.features).map(([category, features]) => (
+                <div key={category} className="mb-6">
+                  <h3 className="text-lg font-semibold text-gray-800 mb-2">{category}</h3>
+                  <div className="space-y-0">
+                    {features &&
+                      features.map((featureGroup, groupIndex) => (
+                        <div key={groupIndex}>
+                          {typeof featureGroup === "object" && featureGroup !== null ? (
+                            Object.entries(featureGroup).map(([subCategory, subFeatures]) => (
+                              <div key={subCategory} className="mb-3">
+                                <div className="font-medium text-gray-800 mb-2">
+                                  <span className="mr-2 text-xl">•</span> {subCategory}
+                                </div>
+                                <ul className="list-disc list-inside ml-4 space-y-1">
+                                  {Array.isArray(subFeatures) &&
+                                    subFeatures.map((subFeature, subIndex) => (
+                                      <li key={subIndex} className="text-sm text-gray-600">
+                                        {subFeature}
+                                      </li>
+                                    ))}
+                                </ul>
+                              </div>
+                            ))
+                          ) : (
+                            <div className="font-medium text-gray-800">
+                              <span className="mr-2 text-xl">•</span> {featureGroup}
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                  </div>
+                </div>
+              ))
+            ) : (
+              <p>추후 추가</p>
+            )}
           </div>
 
           <h2 className="text-2xl font-bold text-gray-900 mb-2 mt-12">기술적 도전과 해결</h2>

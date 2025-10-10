@@ -72,30 +72,30 @@ export default function Contact() {
       <div className="max-w-4xl mx-auto px-4 text-center">
         <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Contact</h2>
 
-        <div className="flex flex-col md:flex-row justify-between gap-8 mb-6 w-[80%] mx-auto">
-          <div className="bg-white/10 backdrop-blur-sm rounded-lg w-[30%] py-4 cursor-pointer hover:bg-custom-200/20 transition-colors shadow-md" onClick={openEmail}>
+        <div className="flex flex-row md:flex-row justify-between gap-[5vw] mb-6 md:gap-8 w-[80%] mx-auto">
+          <div className="bg-white/10 backdrop-blur-sm rounded-lg w-[25%] py-4 cursor-pointer hover:bg-custom-200/20 transition-colors shadow-md" onClick={openEmail}>
             <div className="text-custom-200 text-2xl mb-2 flex items-center justify-center">
               <MailIcon />
             </div>
-            <h3 className="text-white font-semibold">이메일</h3>
+            <h3 className="text-white font-semibold md:text-lg">이메일</h3>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-lg w-[30%] py-4 cursor-pointer hover:bg-custom-200/20 transition-colors shadow-md" onClick={openCellphone}>
             <div className="text-custom-200 text-2xl mb-2 flex items-center justify-center">
               <PhoneIcon />
             </div>
-            <h3 className="text-white font-semibold">전화번호</h3>
+            <h3 className="text-white font-semibold md:text-lg">전화번호</h3>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-lg w-[30%] py-4 cursor-pointer hover:bg-custom-200/20 transition-colors shadow-md" onClick={openGithub}>
             <div className="text-custom-200 text-2xl mb-2 flex items-center justify-center">
               <GithubIcon />
             </div>
-            <h3 className="text-white font-semibold">GitHub</h3>
+            <h3 className="text-white font-semibold md:text-lg">GitHub</h3>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-lg w-[30%] py-4 cursor-pointer hover:bg-custom-200/20 transition-colors shadow-md" onClick={openBlog}>
             <div className="text-custom-200 text-2xl mb-2 flex items-center justify-center">
               <BookIcon />
             </div>
-            <h3 className="text-white font-semibold">Blog</h3>
+            <h3 className="text-white font-semibold md:text-lg">Blog</h3>
           </div>
         </div>
 

@@ -3,6 +3,7 @@ import { create } from "zustand";
 export interface Project {
   id: string;
   title: string;
+  soloOrTeam: string;
   duration: string;
   description: string;
   image: string;
@@ -16,7 +17,7 @@ export interface Project {
   liveUrl?: string;
   downloadUrl?: string;
   content?: string;
-  features?: string[];
+  features?: { [key: string]: string[] | object[] | undefined };
   challenges?: string;
 }
 
@@ -29,7 +30,7 @@ interface PortfolioState {
 export const usePortfolioStore = create<PortfolioState>((set, get) => ({
   projects: [],
   setProjects: (projects) => set({ projects }),
-  getProjectById: (id) => {
+  getProjectById: (id: string) => {
     const { projects } = get();
     return projects.find((project) => project.id === id);
   },

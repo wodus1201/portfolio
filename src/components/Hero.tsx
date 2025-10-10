@@ -38,7 +38,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-custom-100">
+    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-red-50 to-custom-100">
       <div className="text-center px-4 max-w-4xl mx-auto z-10">
         <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-8 font-sans">
           안녕하세요, <br />
@@ -62,13 +62,15 @@ export default function Hero() {
           <br />
           박재연입니다.
         </h1>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button onClick={() => scrollToSection("projects")} className="bg-custom-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-custom-700 transition-colors cursor-pointer">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center w-full mx-auto">
+          <button
+            onClick={() => scrollToSection("projects")}
+            className="bg-custom-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-custom-700 transition-colors cursor-pointer w-full sm:w-auto min-w-[160px] sm:min-w-0">
             프로젝트 보기
           </button>
           <button
             onClick={() => scrollToSection("contact")}
-            className="border-2 border-custom-600 text-custom-600 px-8 py-3 rounded-lg text-lg font-semibold hover:bg-custom-600 hover:text-white transition-colors cursor-pointer">
+            className="border-2 border-custom-600 text-custom-600 px-8 py-3 rounded-lg text-lg font-semibold hover:bg-custom-600 hover:text-white transition-colors cursor-pointer w-full sm:w-auto min-w-[160px] sm:min-w-0">
             연락하기
           </button>
         </div>
