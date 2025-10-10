@@ -1,7 +1,11 @@
 import SectionHeader from "@/components/SectionHeader";
-import TechTag from "@/components/TechTag";
+import { myData } from "@/data/projects";
 
 export default function About() {
+  const openPage = (url: string) => {
+    window.open(url, "_blank");
+  };
+
   return (
     <section className="py-20 bg-white">
       <div className="max-w-6xl mx-auto px-4">
@@ -13,27 +17,53 @@ export default function About() {
         />
 
         <div className="flex flex-col md:flex-row justify-center gap-12 items-center">
-          <div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">기술 스택</h3>
-            <div className="space-y-4">
-              {[
-                {
-                  title: "Frontend",
-                  techs: ["React", "JavaScript", "TypeScript", "Tailwind CSS", "Zustand", "HTML", "CSS", "Three.js"],
-                  variant: "frontend" as const,
-                },
-                { title: "Backend", techs: ["Node.js", "Express", "MongoDB"], variant: "backend" as const },
-                { title: "Tools & Others", techs: ["Git", "Slack", "AWS", "Figma", "Jest"], variant: "tools" as const },
-              ].map(section => (
-                <div key={section.title}>
-                  <h4 className="text-lg font-semibold text-gray-800 mb-2">{section.title}</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {section.techs.map(tech => (
-                      <TechTag key={tech} tech={tech} variant={section.variant} />
-                    ))}
-                  </div>
+          <div className="w-[70%] mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-1 w-full">
+              <div className="rounded-xl p-4 text-center">
+                <div className="text-gray-500">이름</div>
+                <div className="font-medium">{myData.name}</div>
+              </div>
+              <div className="rounded-xl p-4 text-center">
+                <div className="text-gray-500">생년월일</div>
+                <div className="font-medium">{myData.birthday}</div>
+              </div>
+              <div className="rounded-xl p-4 text-center">
+                <div className="text-gray-500">전화번호</div>
+                <div
+                  className="font-medium cursor-pointer underline hover:text-custom-600 transition-colors duration-300"
+                  onClick={() => openPage(`tel:${myData.phone}`)}
+                >
+                  {myData.phone}
                 </div>
-              ))}
+              </div>
+
+              <div className="rounded-xl p-4 text-center">
+                <div className="text-gray-500">이메일</div>
+                <div
+                  className="font-medium cursor-pointer underline hover:text-custom-600 transition-colors duration-300"
+                  onClick={() => openPage(`mailto:${myData.email}`)}
+                >
+                  {myData.email}
+                </div>
+              </div>
+              <div className="rounded-xl p-4 text-center">
+                <div className="text-gray-500">GitHub</div>
+                <div
+                  className="font-medium cursor-pointer underline hover:text-custom-600 transition-colors duration-300"
+                  onClick={() => openPage(myData.github)}
+                >
+                  바로가기
+                </div>
+              </div>
+              <div className="rounded-xl p-4 text-center">
+                <div className="text-gray-500">Blog</div>
+                <div
+                  className="font-medium cursor-pointer underline hover:text-custom-600 transition-colors duration-300"
+                  onClick={() => openPage(myData.blog)}
+                >
+                  바로가기
+                </div>
+              </div>
             </div>
           </div>
         </div>

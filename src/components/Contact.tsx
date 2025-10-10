@@ -1,4 +1,4 @@
-import { MailIcon, GithubIcon, PhoneIcon, BookIcon } from "lucide-react";
+import { MailIcon, PhoneIcon } from "lucide-react";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
 import SectionHeader from "@/components/SectionHeader";
@@ -8,9 +8,7 @@ import Button from "@/components/Button";
 export default function Contact() {
   const contactInfo = {
     email: "parkjaeyon1201@gmail.com",
-    github: "https://github.com/wodus1201",
     cellphone: "010-5593-7732",
-    blog: "https://wodus1201.github.io/",
   };
 
   const [message, setMessage] = useState({
@@ -60,21 +58,13 @@ export default function Contact() {
   const openEmail = () => {
     window.open(`mailto:${contactInfo.email}`);
   };
-  const openGithub = () => {
-    window.open(`${contactInfo.github}`);
-  };
   const openCellphone = () => {
     window.open(`tel:${contactInfo.cellphone}`);
   };
-  const openBlog = () => {
-    window.open(`${contactInfo.blog}`);
-  };
 
   const contactCards = [
-    { icon: <MailIcon />, title: "이메일", onClick: openEmail, width: "w-[25%]" },
-    { icon: <PhoneIcon />, title: "전화번호", onClick: openCellphone, width: "w-[30%]" },
-    { icon: <GithubIcon />, title: "GitHub", onClick: openGithub, width: "w-[30%]" },
-    { icon: <BookIcon />, title: "Blog", onClick: openBlog, width: "w-[30%]" },
+    { icon: <MailIcon />, title: "이메일", onClick: openEmail, width: "w-[50%]" },
+    { icon: <PhoneIcon />, title: "전화번호", onClick: openCellphone, width: "w-[50%]" },
   ];
 
   return (
@@ -82,7 +72,7 @@ export default function Contact() {
       <div className="max-w-4xl mx-auto px-4 text-center">
         <SectionHeader title="Contact" className="text-white" />
 
-        <div className="flex flex-row md:flex-row justify-between gap-[5vw] mb-6 md:gap-8 w-[80%] mx-auto">
+        <div className="flex flex-row md:flex-row justify-between gap-[5vw] mb-6 md:gap-6 w-[80%] mx-auto">
           {contactCards.map(card => (
             <ContactCard
               key={card.title}

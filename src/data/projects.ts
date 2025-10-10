@@ -1,4 +1,14 @@
 import { Project } from "@/types/project";
+import { MyData } from "@/types/myData";
+
+export const myData: MyData = {
+  name: "박재연",
+  birthday: "1998.01.12",
+  phone: "010-5593-7732",
+  email: "parkjaeyon1201@gmail.com",
+  github: "https://github.com/wodus1201",
+  blog: "https://wodus1201.github.io/",
+};
 
 export const projectsData: Project[] = [
   {

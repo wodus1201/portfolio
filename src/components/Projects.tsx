@@ -12,7 +12,7 @@ export default function Projects() {
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-custom-300">
       <div className="max-w-6xl mx-auto px-4">
         <SectionHeader
           title="Projects"
