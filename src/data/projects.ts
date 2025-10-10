@@ -7,7 +7,7 @@ export const projectsData: Project[] = [
     soloOrTeam: "team",
     duration: "2025.05 ~ 2025.06",
     description:
-      "에어팟 모션 데이터를 활용해 머리 움직임만으로 시스템 커서를 제어하고, 웹 대시보드에서 단축키 설정 · 시각화를 지원하는 크로스플랫폼 협업 프로젝트",
+      "[프론트엔드 담당]\n에어팟 모션 데이터를 활용해 머리 움직임만으로 시스템 커서를 제어하고, 웹 대시보드에서 단축키 설정 · 시각화를 지원하는 크로스플랫폼 협업 프로젝트",
     image: "/Noddy-demo-video.gif",
     staticImage: "/Noddy-static.jpeg",
     technologies: [

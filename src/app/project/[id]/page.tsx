@@ -121,11 +121,11 @@ export default function ProjectDetail() {
             <span
               className={`${project.soloOrTeam === "solo" ? "bg-orange-300 text-orange-800" : "bg-green-300 text-green-800"} ml-4 px-3 py-1.5 rounded-full text-lg font-normal`}
             >
-              {project.soloOrTeam === "solo" ? "개인 프로젝트" : "2인 팀 프로젝트 (프론트엔드 담당)"}
+              {project.soloOrTeam === "solo" ? "개인 프로젝트" : "2인 팀 프로젝트"}
             </span>
           </h1>
           <p className="text-xl text-gray-600 mb-2">{project.duration}</p>
-          <p className="text-xl text-gray-600 mb-6">{project.description}</p>
+          <p className="text-xl text-gray-600 mb-6 whitespace-pre-line">{project.description}</p>
         </div>
 
         <div className="mb-12">
