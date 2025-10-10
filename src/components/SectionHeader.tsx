@@ -6,9 +6,9 @@ interface SectionHeaderProps {
 
 export default function SectionHeader({ title, description, className = "" }: SectionHeaderProps) {
   return (
-    <div className={`text-center mb-6 ${className}`}>
+    <div className={`text-center ${className}`}>
       <h2 className="text-4xl md:text-5xl font-bold mb-6">{title}</h2>
-      {description && <p className="text-xl text-gray-600 max-w-3xl mx-auto whitespace-pre-line">{description}</p>}
+      {description && <p className="text-xl text-gray-600 max-w-3xl mx-auto whitespace-pre-line mb-6">{description}</p>}
     </div>
   );
 }

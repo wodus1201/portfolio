@@ -5,12 +5,13 @@ import { usePortfolioStore } from "@/store/portfolioStore";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
+import Skill from "@/components/Skill";
 import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
 import { projectsData } from "@/data/projects";
 
 export default function Home() {
-  const setProjects = usePortfolioStore((state) => state.setProjects);
+  const setProjects = usePortfolioStore(state => state.setProjects);
 
   useEffect(() => {
     setProjects(projectsData);
@@ -24,6 +25,9 @@ export default function Home() {
       </div>
       <div id="about">
         <About />
+      </div>
+      <div id="skill">
+        <Skill />
       </div>
       <div id="projects">
         <Projects />
