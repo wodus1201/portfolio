@@ -16,7 +16,10 @@ export default function Projects() {
       <div className="max-w-6xl mx-auto px-4">
         <SectionHeader
           title="Projects"
-          description="제가 작업한 주요 프로젝트들을 소개합니다.\n각 프로젝트를 클릭하면 자세한 내용을 확인할 수 있습니다."
+          className="text-gray-900"
+          description={
+            "제가 작업한 주요 프로젝트들을 소개합니다.\n각 프로젝트를 클릭하면 자세한 내용을 확인할 수 있습니다."
+          }
         />
 
         <div className="flex flex-wrap justify-center gap-8">

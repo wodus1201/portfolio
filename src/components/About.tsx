@@ -7,7 +7,9 @@ export default function About() {
       <div className="max-w-6xl mx-auto px-4">
         <SectionHeader
           title="About Me"
-          description="저는 사용자 경험을 최우선으로 생각하며,\n최신 기술을 활용하여 실용적이고 직관적인 인터페이스를 만드는 것을 좋아합니다."
+          description={
+            "저는 사용자 경험을 최우선으로 생각하며,\n최신 기술을 활용하여 실용적이고 직관적인 인터페이스를 만드는 것을 좋아합니다."
+          }
         />
 
         <div className="flex flex-col md:flex-row justify-center gap-12 items-center">
