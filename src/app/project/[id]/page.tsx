@@ -2,46 +2,21 @@
 
 import { useParams, useRouter } from "next/navigation";
 import { usePortfolioStore } from "@/store/portfolioStore";
-import { useEffect, useState, useRef } from "react";
-import Link from "next/link";
-import Image from "next/image";
+import { useEffect, useState } from "react";
 import { projectsData } from "@/data/projects";
 import { Project } from "@/types/project";
 import { ArrowUpIcon, DownloadIcon, GithubIcon, RocketIcon } from "lucide-react";
-
-const useTooltip = () => {
-  const [showTooltip, setShowTooltip] = useState(false);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-  const handleMouseEnter = () => {
-    timeoutRef.current = setTimeout(() => {
-      setShowTooltip(true);
-    }, 1000);
-  };
-
-  const handleMouseLeave = () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-    setShowTooltip(false);
-  };
-
-  return { showTooltip, handleMouseEnter, handleMouseLeave };
-};
+import Link from "next/link";
+import Image from "next/image";
+import TooltipButton from "@/components/TooltipButton";
 
 export default function ProjectDetail() {
   const params = useParams();
   const router = useRouter();
-  const setProjects = usePortfolioStore(state => state.setProjects);
-  const getProjectById = usePortfolioStore(state => state.getProjectById);
+  const { setProjects, getProjectById } = usePortfolioStore(state => state);
   const [project, setProject] = useState<Project | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
-
-  const githubTooltip = useTooltip();
-  const liveTooltip = useTooltip();
-  const downloadTooltip = useTooltip();
-  const arrowUpTooltip = useTooltip();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -253,66 +228,26 @@ export default function ProjectDetail() {
       <nav
         className={`fixed bottom-0 right-0 m-4  ${isScrolled ? "opacity-100" : "opacity-0"} transition-opacity-colors duration-300 flex flex-col gap-1`}
       >
-        <div className="relative">
-          <button
-            onMouseEnter={githubTooltip.handleMouseEnter}
-            onMouseLeave={githubTooltip.handleMouseLeave}
-            className="h-10 w-10 rounded-full bg-custom-300 hover:bg-custom-500 flex items-center justify-center cursor-pointer text-white font-mono font-semibold hover:scale-110 transition-all-colors duration-300"
-          >
-            <GithubIcon />
-          </button>
-          {githubTooltip.showTooltip && (
-            <div className="absolute right-full top-1/2 transform -translate-y-1/2 mr-2 px-3 py-2 bg-custom-500 text-white text-sm rounded-lg shadow-lg whitespace-nowrap z-50">
-              소스 코드 보기
-              <div className="absolute left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent border-l-custom-500"></div>
-            </div>
-          )}
-        </div>
-        <div className="relative">
-          <button
-            onMouseEnter={liveTooltip.handleMouseEnter}
-            onMouseLeave={liveTooltip.handleMouseLeave}
-            className="h-10 w-10 rounded-full bg-custom-300 hover:bg-custom-500 flex items-center justify-center cursor-pointer text-white font-mono font-semibold hover:scale-110 transition-all-colors duration-300"
-          >
-            <RocketIcon />
-          </button>
-          {liveTooltip.showTooltip && (
-            <div className="absolute right-full top-1/2 transform -translate-y-1/2 mr-2 px-3 py-2 bg-custom-500 text-white text-sm rounded-lg shadow-lg whitespace-nowrap z-50">
-              배포 사이트 보기
-              <div className="absolute left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent border-l-custom-500"></div>
-            </div>
-          )}
-        </div>
-        <div className="relative">
-          <button
-            onMouseEnter={downloadTooltip.handleMouseEnter}
-            onMouseLeave={downloadTooltip.handleMouseLeave}
-            className="h-10 w-10 rounded-full bg-custom-300 hover:bg-custom-500 flex items-center justify-center cursor-pointer text-white font-mono font-semibold hover:scale-110 transition-all-colors duration-300"
-          >
-            <DownloadIcon />
-          </button>
-          {downloadTooltip.showTooltip && (
-            <div className="absolute right-full top-1/2 transform -translate-y-1/2 mr-2 px-3 py-2 bg-custom-500 text-white text-sm rounded-lg shadow-lg whitespace-nowrap z-50">
-              앱 다운로드
-              <div className="absolute left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent border-l-custom-500"></div>
-            </div>
-          )}
-        </div>
-        <div className="relative">
-          <button
-            onMouseEnter={arrowUpTooltip.handleMouseEnter}
-            onMouseLeave={arrowUpTooltip.handleMouseLeave}
-            className="h-10 w-10 rounded-full bg-custom-300 hover:bg-custom-500 flex items-center justify-center cursor-pointer text-white font-mono font-semibold hover:scale-110 transition-all-colors duration-300"
-          >
-            <ArrowUpIcon />
-          </button>
-          {arrowUpTooltip.showTooltip && (
-            <div className="absolute right-full top-1/2 transform -translate-y-1/2 mr-2 px-3 py-2 bg-custom-500 text-white text-sm rounded-lg shadow-lg whitespace-nowrap z-50">
-              맨 위로 이동
-              <div className="absolute left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent border-l-custom-500"></div>
-            </div>
-          )}
-        </div>
+        <TooltipButton
+          icon={<GithubIcon />}
+          tooltip="소스 코드 보기"
+          onClick={() => project?.githubUrl && window.open(project.githubUrl, "_blank")}
+        />
+        <TooltipButton
+          icon={<RocketIcon />}
+          tooltip="배포 사이트 보기"
+          onClick={() => project?.liveUrl && window.open(project.liveUrl, "_blank")}
+        />
+        <TooltipButton
+          icon={<DownloadIcon />}
+          tooltip="앱 다운로드"
+          onClick={() => project?.downloadUrl && window.open(project.downloadUrl, "_blank")}
+        />
+        <TooltipButton
+          icon={<ArrowUpIcon />}
+          tooltip="맨 위로 이동"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        />
       </nav>
     </div>
   );
