@@ -14,7 +14,7 @@ export default function Hero() {
       setAnimationState("disappearing");
 
       setTimeout(() => {
-        setCurrentText((prev) => (prev + 1) % texts.length);
+        setCurrentText(prev => (prev + 1) % texts.length);
         setAnimationState("hidden");
 
         setTimeout(() => {
@@ -49,12 +49,13 @@ export default function Hero() {
                   animationState === "visible"
                     ? "transform translate-y-0 opacity-100"
                     : animationState === "disappearing"
-                    ? "transform translate-y-full opacity-0"
-                    : animationState === "hidden"
-                    ? "transform -translate-y-full opacity-0"
-                    : "transform -translate-y-full opacity-0"
+                      ? "transform translate-y-full opacity-0"
+                      : animationState === "hidden"
+                        ? "transform -translate-y-full opacity-0"
+                        : "transform -translate-y-full opacity-0"
                 }`}
-                style={{ lineHeight: "1em" }}>
+                style={{ lineHeight: "1em" }}
+              >
                 <GradientText>{texts[currentText]}</GradientText>
               </div>
             </div>
@@ -65,12 +66,14 @@ export default function Hero() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center w-full mx-auto">
           <button
             onClick={() => scrollToSection("projects")}
-            className="bg-custom-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-custom-700 transition-colors cursor-pointer w-full sm:w-auto min-w-[160px] sm:min-w-0">
+            className="bg-custom-600 text-white px-8 py-3 rounded-xl text-lg font-semibold hover:bg-custom-700 transition-colors cursor-pointer w-full sm:w-auto min-w-[160px] sm:min-w-0"
+          >
             프로젝트 보기
           </button>
           <button
             onClick={() => scrollToSection("contact")}
-            className="border-2 border-custom-600 text-custom-600 px-8 py-3 rounded-lg text-lg font-semibold hover:bg-custom-600 hover:text-white transition-colors cursor-pointer w-full sm:w-auto min-w-[160px] sm:min-w-0">
+            className="border-2 border-custom-600 text-custom-600 px-8 py-3 rounded-xl text-lg font-semibold hover:bg-custom-600 hover:text-white transition-colors cursor-pointer w-full sm:w-auto min-w-[160px] sm:min-w-0"
+          >
             연락하기
           </button>
         </div>
