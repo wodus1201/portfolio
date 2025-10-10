@@ -4,6 +4,8 @@ import Link from "next/link";
 import { usePortfolioStore } from "@/store/portfolioStore";
 import Image from "next/image";
 import { useState } from "react";
+import SectionHeader from "./SectionHeader";
+import TechTag from "./TechTag";
 
 export default function Projects() {
   const projects = usePortfolioStore(state => state.projects);
@@ -12,13 +14,10 @@ export default function Projects() {
   return (
     <section className="py-20 bg-gray-50">
       <div className="max-w-6xl mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Projects</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            제가 작업한 주요 프로젝트들을 소개합니다.
-            <br />각 프로젝트를 클릭하면 자세한 내용을 확인할 수 있습니다.
-          </p>
-        </div>
+        <SectionHeader
+          title="Projects"
+          description="제가 작업한 주요 프로젝트들을 소개합니다.\n각 프로젝트를 클릭하면 자세한 내용을 확인할 수 있습니다."
+        />
 
         <div className="flex flex-wrap justify-center gap-8">
           {projects.map(project => (
@@ -54,19 +53,13 @@ export default function Projects() {
                   {project.technologies.map((techGroup, index) => (
                     <div key={index} className="flex flex-wrap gap-1">
                       {techGroup.frontend?.slice(0, 2).map(tech => (
-                        <span key={tech} className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">
-                          {tech}
-                        </span>
+                        <TechTag key={tech} tech={tech} variant="frontend" size="sm" />
                       ))}
                       {techGroup.backend?.slice(0, 1).map(tech => (
-                        <span key={tech} className="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">
-                          {tech}
-                        </span>
+                        <TechTag key={tech} tech={tech} variant="backend" size="sm" />
                       ))}
                       {techGroup.deploy?.slice(0, 1).map(tech => (
-                        <span key={tech} className="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs">
-                          {tech}
-                        </span>
+                        <TechTag key={tech} tech={tech} variant="deploy" size="sm" />
                       ))}
                     </div>
                   ))}
