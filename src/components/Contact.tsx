@@ -1,6 +1,9 @@
 import { MailIcon, GithubIcon, PhoneIcon, BookIcon } from "lucide-react";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
+import SectionHeader from "./SectionHeader";
+import ContactCard from "./ContactCard";
+import Button from "./Button";
 
 export default function Contact() {
   const contactInfo = {
@@ -67,48 +70,28 @@ export default function Contact() {
     window.open(`${contactInfo.blog}`);
   };
 
+  const contactCards = [
+    { icon: <MailIcon />, title: "이메일", onClick: openEmail, width: "w-[25%]" },
+    { icon: <PhoneIcon />, title: "전화번호", onClick: openCellphone, width: "w-[30%]" },
+    { icon: <GithubIcon />, title: "GitHub", onClick: openGithub, width: "w-[30%]" },
+    { icon: <BookIcon />, title: "Blog", onClick: openBlog, width: "w-[30%]" },
+  ];
+
   return (
     <section className="py-20 bg-custom-600">
       <div className="max-w-4xl mx-auto px-4 text-center">
-        <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Contact</h2>
+        <SectionHeader title="Contact" className="text-white" />
 
         <div className="flex flex-row md:flex-row justify-between gap-[5vw] mb-6 md:gap-8 w-[80%] mx-auto">
-          <div
-            className="bg-white/10 backdrop-blur-sm rounded-2xl w-[25%] py-4 cursor-pointer hover:bg-custom-200/20 transition-colors shadow-md"
-            onClick={openEmail}
-          >
-            <div className="text-custom-200 text-2xl mb-2 flex items-center justify-center">
-              <MailIcon />
-            </div>
-            <h3 className="text-white font-semibold md:text-lg">이메일</h3>
-          </div>
-          <div
-            className="bg-white/10 backdrop-blur-sm rounded-2xl w-[30%] py-4 cursor-pointer hover:bg-custom-200/20 transition-colors shadow-md"
-            onClick={openCellphone}
-          >
-            <div className="text-custom-200 text-2xl mb-2 flex items-center justify-center">
-              <PhoneIcon />
-            </div>
-            <h3 className="text-white font-semibold md:text-lg">전화번호</h3>
-          </div>
-          <div
-            className="bg-white/10 backdrop-blur-sm rounded-2xl w-[30%] py-4 cursor-pointer hover:bg-custom-200/20 transition-colors shadow-md"
-            onClick={openGithub}
-          >
-            <div className="text-custom-200 text-2xl mb-2 flex items-center justify-center">
-              <GithubIcon />
-            </div>
-            <h3 className="text-white font-semibold md:text-lg">GitHub</h3>
-          </div>
-          <div
-            className="bg-white/10 backdrop-blur-sm rounded-2xl w-[30%] py-4 cursor-pointer hover:bg-custom-200/20 transition-colors shadow-md"
-            onClick={openBlog}
-          >
-            <div className="text-custom-200 text-2xl mb-2 flex items-center justify-center">
-              <BookIcon />
-            </div>
-            <h3 className="text-white font-semibold md:text-lg">Blog</h3>
-          </div>
+          {contactCards.map(card => (
+            <ContactCard
+              key={card.title}
+              icon={card.icon}
+              title={card.title}
+              onClick={card.onClick}
+              className={card.width}
+            />
+          ))}
         </div>
 
         <div className="bg-white rounded-2xl p-8 mx-auto w-[80%]">
@@ -144,13 +127,9 @@ export default function Contact() {
               value={message.message}
               onChange={e => setMessage({ ...message, message: e.target.value })}
             ></textarea>
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full cursor-pointer bg-custom-600 text-white py-3 rounded-2xl font-semibold hover:bg-custom-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            >
+            <Button type="submit" disabled={isSubmitting} className="w-full">
               {isSubmitting ? "전송 중..." : "메시지 보내기"}
-            </button>
+            </Button>
 
             {submitStatus === "success" && (
               <div className="text-green-600 text-center mt-4">
