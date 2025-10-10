@@ -1,9 +1,9 @@
 import { MailIcon, GithubIcon, PhoneIcon, BookIcon } from "lucide-react";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
-import SectionHeader from "./SectionHeader";
-import ContactCard from "./ContactCard";
-import Button from "./Button";
+import SectionHeader from "@/components/SectionHeader";
+import ContactCard from "@/components/ContactCard";
+import Button from "@/components/Button";
 
 export default function Contact() {
   const contactInfo = {

@@ -9,6 +9,8 @@ import { ArrowUpIcon, DownloadIcon, GithubIcon, RocketIcon } from "lucide-react"
 import Link from "next/link";
 import Image from "next/image";
 import TooltipButton from "@/components/TooltipButton";
+import { useScroll } from "@/hooks/useScroll";
+import TechTag from "@/components/TechTag";
 
 export default function ProjectDetail() {
   const params = useParams();
@@ -16,16 +18,7 @@ export default function ProjectDetail() {
   const { setProjects, getProjectById } = usePortfolioStore(state => state);
   const [project, setProject] = useState<Project | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const isScrolled = useScroll(50);
 
   useEffect(() => {
     setProjects(projectsData);
@@ -37,7 +30,7 @@ export default function ProjectDetail() {
       setProject(foundProject);
     }
     setIsLoading(false);
-  }, [params.id, setProjects, getProjectById, router, isScrolled]);
+  }, [params.id, setProjects, getProjectById, router]);
 
   if (isLoading) {
     return (
@@ -142,42 +135,23 @@ export default function ProjectDetail() {
           <div className="space-y-4">
             {project.technologies.map((techGroup, index) => (
               <div key={index} className="space-y-3">
-                {techGroup.frontend && techGroup.frontend.length > 0 && (
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-800 mb-2">Frontend</h3>
-                    <div className="flex flex-wrap gap-2">
-                      {techGroup.frontend.map(tech => (
-                        <span key={tech} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
-                          {tech}
-                        </span>
-                      ))}
+                {[
+                  { key: "frontend", title: "Frontend", variant: "frontend" as const },
+                  { key: "backend", title: "Backend", variant: "backend" as const },
+                  { key: "deploy", title: "Deployment", variant: "deploy" as const },
+                ].map(({ key, title, variant }) => {
+                  const techs = techGroup[key as keyof typeof techGroup];
+                  return techs && techs.length > 0 ? (
+                    <div key={key}>
+                      <h3 className="text-lg font-semibold text-gray-800 mb-2">{title}</h3>
+                      <div className="flex flex-wrap gap-2">
+                        {techs.map(tech => (
+                          <TechTag key={tech} tech={tech} variant={variant} />
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                )}
-                {techGroup.backend && techGroup.backend.length > 0 && (
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-800 mb-2">Backend</h3>
-                    <div className="flex flex-wrap gap-2">
-                      {techGroup.backend.map(tech => (
-                        <span key={tech} className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                )}
-                {techGroup.deploy && techGroup.deploy.length > 0 && (
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-800 mb-2">Deployment</h3>
-                    <div className="flex flex-wrap gap-2">
-                      {techGroup.deploy.map(tech => (
-                        <span key={tech} className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                )}
+                  ) : null;
+                })}
               </div>
             ))}
           </div>

@@ -1,32 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { ArrowUpIcon } from "lucide-react";
+import { useScroll, scrollToSection } from "@/hooks/useScroll";
 
 export default function Navigation() {
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - 72;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-    }
-  };
+  const isScrolled = useScroll(50);
 
   return (
     <>
@@ -37,30 +15,20 @@ export default function Navigation() {
           <div className="flex items-center justify-between">
             <div className="text-4xl font-bold text-custom-700">Jason&apos;s Portfolio</div>
             <div className="hidden md:flex space-x-4">
-              <button
-                onClick={() => scrollToSection("hero")}
-                className="text-gray-700 cursor-pointer font-mono font-semibold hover:text-custom-300 transition-colors"
-              >
-                Home
-              </button>
-              <button
-                onClick={() => scrollToSection("about")}
-                className="text-gray-700 cursor-pointer font-mono font-semibold hover:text-custom-300 transition-colors"
-              >
-                About
-              </button>
-              <button
-                onClick={() => scrollToSection("projects")}
-                className="text-gray-700 cursor-pointer font-mono font-semibold hover:text-custom-300 transition-colors"
-              >
-                Projects
-              </button>
-              <button
-                onClick={() => scrollToSection("contact")}
-                className="text-gray-700 cursor-pointer font-mono font-semibold hover:text-custom-300 transition-colors"
-              >
-                Contact
-              </button>
+              {[
+                { id: "hero", label: "Home" },
+                { id: "about", label: "About" },
+                { id: "projects", label: "Projects" },
+                { id: "contact", label: "Contact" },
+              ].map(item => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id, 72)}
+                  className="text-gray-700 cursor-pointer font-mono font-semibold hover:text-custom-300 transition-colors"
+                >
+                  {item.label}
+                </button>
+              ))}
             </div>
           </div>
         </div>
@@ -69,7 +37,7 @@ export default function Navigation() {
         className={`fixed bottom-0 right-0 h-13 w-13 rounded-full m-4 bg-custom-300 hover:bg-custom-500 ${isScrolled ? "opacity-100" : "opacity-0"} transition-opacity-colors duration-300`}
       >
         <button
-          onClick={() => scrollToSection("hero")}
+          onClick={() => scrollToSection("hero", 72)}
           className="flex items-center justify-center h-full w-full cursor-pointer text-white font-mono font-semibold"
         >
           <ArrowUpIcon />

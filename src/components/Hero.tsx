@@ -1,7 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import GradientText from "./GradientText";
+import GradientText from "@/components/GradientText";
+import Button from "@/components/Button";
+import { scrollToSection } from "@/hooks/useScroll";
 
 export default function Hero() {
   const [currentText, setCurrentText] = useState(0);
@@ -30,13 +32,6 @@ export default function Hero() {
     return () => clearInterval(interval);
   }, [texts.length]);
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-red-50 to-custom-100">
       <div className="text-center px-4 max-w-4xl mx-auto z-10">
@@ -64,18 +59,16 @@ export default function Hero() {
           박재연입니다.
         </h1>
         <div className="flex flex-col sm:flex-row gap-4 justify-center w-full mx-auto">
-          <button
-            onClick={() => scrollToSection("projects")}
-            className="bg-custom-600 text-white px-8 py-3 rounded-xl text-lg font-semibold hover:bg-custom-700 transition-colors cursor-pointer w-full sm:w-auto min-w-[160px] sm:min-w-0"
-          >
+          <Button onClick={() => scrollToSection("projects")} className="w-full sm:w-auto min-w-[160px] sm:min-w-0">
             프로젝트 보기
-          </button>
-          <button
+          </Button>
+          <Button
+            variant="outline"
             onClick={() => scrollToSection("contact")}
-            className="border-2 border-custom-600 text-custom-600 px-8 py-3 rounded-xl text-lg font-semibold hover:bg-custom-600 hover:text-white transition-colors cursor-pointer w-full sm:w-auto min-w-[160px] sm:min-w-0"
+            className="w-full sm:w-auto min-w-[160px] sm:min-w-0"
           >
             연락하기
-          </button>
+          </Button>
         </div>
       </div>
     </section>

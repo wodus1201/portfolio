@@ -4,8 +4,8 @@ import Link from "next/link";
 import { usePortfolioStore } from "@/store/portfolioStore";
 import Image from "next/image";
 import { useState } from "react";
-import SectionHeader from "./SectionHeader";
-import TechTag from "./TechTag";
+import SectionHeader from "@/components/SectionHeader";
+import TechTag from "@/components/TechTag";
 
 export default function Projects() {
   const projects = usePortfolioStore(state => state.projects);
