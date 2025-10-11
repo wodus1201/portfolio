@@ -3,7 +3,7 @@ import { MyData } from "@/types/myData";
 
 export const myData: MyData = {
   name: "박재연",
-  birthday: "1998.01.12",
+  birthday: "1998.12.01",
   phone: "010-5593-7732",
   email: "parkjaeyon1201@gmail.com",
   github: "https://github.com/wodus1201",

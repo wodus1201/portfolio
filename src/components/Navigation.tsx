@@ -2,6 +2,7 @@
 
 import { ArrowUpIcon } from "lucide-react";
 import { useScroll, scrollToSection } from "@/hooks/useScroll";
+import TooltipButton from "./TooltipButton";
 
 export default function Navigation() {
   const isScrolled = useScroll(50);
@@ -33,16 +34,11 @@ export default function Navigation() {
           </div>
         </div>
       </nav>
-      <div
-        className={`fixed bottom-0 right-0 h-13 w-13 rounded-full m-4 bg-custom-300 hover:bg-custom-500 ${isScrolled ? "opacity-100" : "opacity-0"} transition-opacity-colors duration-300`}
+      <nav
+        className={`fixed bottom-0 right-0 m-4  ${isScrolled ? "opacity-100" : "opacity-0"} transition-opacity-colors duration-300 flex flex-col gap-1`}
       >
-        <button
-          onClick={() => scrollToSection("hero", 72)}
-          className="flex items-center justify-center h-full w-full cursor-pointer text-white font-mono font-semibold"
-        >
-          <ArrowUpIcon />
-        </button>
-      </div>
+        <TooltipButton icon={<ArrowUpIcon />} tooltip="맨 위로 이동" onClick={() => scrollToSection("hero", 72)} />
+      </nav>
     </>
   );
 }
