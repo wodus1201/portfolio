@@ -7,7 +7,6 @@ import { projectsData } from "@/data/projects";
 import { Project } from "@/types/project";
 import { ArrowUpIcon, DownloadIcon, GithubIcon, RocketIcon } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
 import TooltipButton from "@/components/TooltipButton";
 import { useScroll } from "@/hooks/useScroll";
 import TechTag from "@/components/TechTag";
@@ -122,8 +121,8 @@ export default function ProjectDetail() {
         </div>
 
         <div className="mb-8">
-          <div className="aspect-video bg-gray-200 rounded-2xl flex items-center justify-center">
-            <Image src={project.image} alt={project.title} width={1000} height={1000} unoptimized />
+          <div className="aspect-video bg-gray-200 rounded-2xl overflow-hidden">
+            <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
           </div>
         </div>
 
