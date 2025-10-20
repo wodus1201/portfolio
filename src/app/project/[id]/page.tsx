@@ -108,8 +108,8 @@ export default function ProjectDetail() {
       </header>
 
       <main className="max-w-4xl mx-auto px-4 py-12">
-        <div className="mb-8">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-2 flex items-center">
+        <div>
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 flex items-center">
             {project.title}
             <span
               className={`${project.soloOrTeam === "solo" ? "bg-orange-300 text-orange-800" : "bg-green-300 text-green-800"} ml-4 px-3 py-1.5 rounded-full text-lg font-normal`}
@@ -117,11 +117,11 @@ export default function ProjectDetail() {
               {project.soloOrTeam === "solo" ? "개인 프로젝트" : "2인 팀 프로젝트"}
             </span>
           </h1>
-          <p className="text-xl text-gray-600 mb-2">{project.duration}</p>
-          <p className="text-xl text-gray-600 mb-6 whitespace-pre-line">{project.description}</p>
+          <p className="text-xl text-gray-600 mb-3">{project.duration}</p>
+          <p className="text-xl text-gray-600 mb-4 whitespace-pre-line">{project.description}</p>
         </div>
 
-        <div className="mb-12">
+        <div className="mb-8">
           <div className="aspect-video bg-gray-200 rounded-2xl flex items-center justify-center">
             <Image src={project.image} alt={project.title} width={1000} height={1000} />
           </div>
@@ -131,13 +131,15 @@ export default function ProjectDetail() {
           <h2 className="text-2xl font-bold text-gray-900 mb-2">프로젝트 개요</h2>
           <div className="text-gray-700 leading-relaxed whitespace-pre-line">{project.content}</div>
 
-          <h2 className="text-2xl font-bold text-gray-900 mb-2 mt-12">기술 스택</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-2 mt-8">기술 스택</h2>
           <div className="space-y-4">
             {project.technologies.map((techGroup, index) => (
               <div key={index} className="space-y-3">
                 {[
                   { key: "frontend", title: "Frontend", variant: "frontend" as const },
                   { key: "backend", title: "Backend", variant: "backend" as const },
+                  { key: "image", title: "Image Processing", variant: "image" as const },
+                  { key: "database", title: "Database", variant: "database" as const },
                   { key: "deploy", title: "Deployment", variant: "deploy" as const },
                 ].map(({ key, title, variant }) => {
                   const techs = techGroup[key as keyof typeof techGroup];
@@ -156,7 +158,7 @@ export default function ProjectDetail() {
             ))}
           </div>
 
-          <h2 className="text-2xl font-bold text-gray-900 mb-2 mt-12">주요 기능</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-2 mt-8">주요 기능</h2>
           <div className="text-gray-700 leading-relaxed">
             {project.features && Object.keys(project.features).length > 0 ? (
               Object.entries(project.features).map(([category, features]) => (

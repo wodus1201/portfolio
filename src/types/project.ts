@@ -9,6 +9,8 @@ export interface Project {
   technologies: Array<{
     frontend?: string[];
     backend?: string[];
+    image?: string[];
+    database?: string[];
     deploy?: string[];
   }>;
   githubUrl?: string;

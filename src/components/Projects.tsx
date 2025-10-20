@@ -61,6 +61,12 @@ export default function Projects() {
                       {techGroup.backend?.slice(0, 1).map(tech => (
                         <TechTag key={tech} tech={tech} variant="backend" size="sm" />
                       ))}
+                      {techGroup.image?.slice(0, 1).map(tech => (
+                        <TechTag key={tech} tech={tech} variant="image" size="sm" />
+                      ))}
+                      {techGroup.database?.slice(0, 1).map(tech => (
+                        <TechTag key={tech} tech={tech} variant="database" size="sm" />
+                      ))}
                       {techGroup.deploy?.slice(0, 1).map(tech => (
                         <TechTag key={tech} tech={tech} variant="deploy" size="sm" />
                       ))}

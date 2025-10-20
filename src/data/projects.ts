@@ -17,8 +17,8 @@ export const projectsData: Project[] = [
     soloOrTeam: "team",
     duration: "2025.05 ~ 2025.06",
     description:
-      "[프론트엔드 담당]\n에어팟 모션 데이터를 활용해 머리 움직임만으로 시스템 커서를 제어하고, 웹 대시보드에서 단축키 설정 · 시각화를 지원하는 크로스플랫폼 협업 프로젝트",
-    image: "/Noddy-demo-video.gif",
+      "[프론트엔드 담당]\n에어팟 모션 데이터를 활용해 머리 움직임만으로 시스템 커서를 제어하고, 웹 대시보드에서 단축키 설정 및\n시각화를 지원하는 크로스플랫폼 협업 프로젝트",
+    image: "/Noddy-preview.gif",
     staticImage: "/Noddy-static.jpeg",
     technologies: [
       { frontend: ["JavaScript", "React", "Vite", "React Router", "Zustand", "Tailwind CSS", "Three.js", "i18next"] },
@@ -29,7 +29,7 @@ export const projectsData: Project[] = [
     liveUrl: "https://www.noddy.co.kr/main",
     downloadUrl: "https://www.noddy.co.kr/",
     content:
-      "Noddy는 에어팟의 모션 데이터를 활용해 사용자의 머리 움직임만으로 시스템 커서를 제어하는 실험적 인터랙션 프로젝트입니다.\n에어팟 내부의 자이로스코프와 가속도계 센서를 실시간으로 수집하여, 머리 회전 각도(Yaw, Pitch, Roll) 를 분석하고 이를 화면 커서 이동에 매핑하는 방식을 채택했습니다.\n기존의 마우스나 트랙패드 없이 손이 자유로운 상태에서 디지털 환경을 제어할 수 있는 새로운 HCI(Human-Computer Interaction) 가능성을 탐구하였으며, 특히 장애인 접근성(Assistive Technology) 측면에서 활용 가능성을 고려해 개발되었습니다.",
+      "Noddy는 에어팟의 모션 데이터를 활용해 사용자의 머리 움직임만으로 시스템 커서를 제어하는 실험적 인터랙션 프로젝트입니다.\n에어팟 내부의 자이로스코프와 가속도계 센서를 실시간으로 수집하여, 머리 회전 각도(Yaw, Pitch, Roll) 를 분석하고 이를 화면 커서 이동에 매핑하는 방식을 채택했습니다.\n\n기존의 마우스나 트랙패드 없이 손이 자유로운 상태에서 디지털 환경을 제어할 수 있는 새로운 HCI(Human-Computer Interaction)\n가능성을 탐구하였으며, 특히 장애인 접근성(Assistive Technology) 측면에서 활용 가능성을 고려해 개발되었습니다.",
     features: {
       "웹 대시보드 (React)": [
         {
@@ -70,7 +70,7 @@ export const projectsData: Project[] = [
     soloOrTeam: "solo",
     duration: "2025.06 ~ 2025.07",
     description:
-      "상단에서 공간을 상시 차지하는 메뉴 막대를 대체하는 실시간 커서 추적 툴바로 다양한 기능을 빠르게 실행할 수 있게 해주는 브라우저 확장프로그램 프로젝트",
+      "상단에서 공간을 상시 차지하는 메뉴 막대를 대체하는 실시간 커서 추적 툴바로 다양한 기능을\n빠르게 실행할 수 있게 해주는 브라우저 확장프로그램 프로젝트",
     image: "/donuTool-preview.gif",
     staticImage: "/donuTool-static.jpeg",
     technologies: [
@@ -95,7 +95,7 @@ export const projectsData: Project[] = [
     liveUrl: "https://www.donutool.site/",
     downloadUrl: "https://chromewebstore.google.com/detail/donutool/heabnlejdfhggjiapbfmbhnfmhlknlaa?hl=ko",
     content:
-      "브라우저 화면 상단의 고정 메뉴 영역을 대체하여, 사용자의 커서 위치를 기반으로 실시간으로 나타나는 동적 툴바 인터페이스를 구현하는 프로젝트입니다. 기존 상시 노출형 메뉴바의 공간 낭비 문제를 해결하고, 사용자의 시선 · 손 이동을 최소화하여 더 빠르고 직관적인 기능 실행 경험을 제공합니다.",
+      "브라우저 화면 상단의 고정 메뉴 영역을 대체하여, 사용자의 커서 위치를 기반으로 실시간으로 나타나는 동적 툴바 인터페이스를 구현하는\n프로젝트입니다. 기존 상시 노출형 메뉴바의 공간 낭비 문제를 해결하고, 사용자의 시선 · 손 이동을 최소화하여 더 빠르고 직관적인 기능 실행 경험을 제공합니다.",
     features: {
       "웹 대시보드 (React)": [
         "React 기반 대시보드 설계 · 구현으로 설정 정보 · 활동 현황 · 통계 데이터를 시각화하여 활용성 향상",
@@ -137,6 +137,45 @@ export const projectsData: Project[] = [
             "MV3 service worker 구조 활용, 불필요 리소스 낭비 최소화",
             "메모리 사용량 10% 절감, 사이트 충돌 감소",
           ],
+        },
+      ],
+    },
+  },
+  {
+    id: "project-3",
+    title: "COMIC:tint",
+    soloOrTeam: "solo",
+    duration: "2025.10 ~",
+    description:
+      "만화 페이지에서 컷을 감지해 분할하고, 선만 깔끔히 추출하여 브러시/팔레트로 원하는 캐릭터를\n채색할 수 있게 해주는 차세대 만화 뷰어 앱",
+    image: "/comicTint-preview.gif",
+    staticImage: "/comicTint-static.jpeg",
+    technologies: [
+      {
+        frontend: ["TypeScript", "React Native", "React Navigation", "React Native Skia"],
+        image: ["OpenCV", "NNAPI", "ONNX Runtime"],
+        database: ["SQLite"],
+        deploy: ["Google Play Store", "Gradle"],
+      },
+    ],
+    githubUrl: "https://github.com/wodus1201/ComicTint",
+    liveUrl: "",
+    downloadUrl: "",
+    content:
+      "COMIC:tint는 만화 컷을 자동으로 인식하고 선을 추출하여 사용자가 직접 채색할 수 있는 혁신적인 만화 뷰어 앱입니다.\nReact Native와 TypeScript를 기반으로 개발되었으며, OpenCV를 활용한 이미지 처리와 실시간 컬러링 기능을 제공합니다.\n기존 PDF 뷰어의 한계를 극복하고 만화 독자들에게 새로운 창작 경험을 선사하는 것이 목표입니다.",
+    features: {
+      "React Native": [
+        {
+          "추가 예정 1": ["추가 예정"],
+        },
+        {
+          "추가 예정 2": ["추가 예정"],
+        },
+        {
+          "추가 예정 3": ["추가 예정"],
+        },
+        {
+          "추가 예정 4": ["추가 예정"],
         },
       ],
     },

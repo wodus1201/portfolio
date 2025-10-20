@@ -10,7 +10,17 @@ export default function Skill() {
           {[
             {
               title: "Frontend",
-              techs: ["React", "JavaScript", "TypeScript", "Tailwind CSS", "Zustand", "HTML", "CSS", "Three.js"],
+              techs: [
+                "React",
+                "React Native",
+                "JavaScript",
+                "TypeScript",
+                "Tailwind CSS",
+                "Zustand",
+                "HTML",
+                "CSS",
+                "Three.js",
+              ],
               variant: "frontend" as const,
             },
             { title: "Backend", techs: ["Node.js", "Express", "MongoDB"], variant: "backend" as const },
