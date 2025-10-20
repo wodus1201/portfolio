@@ -123,7 +123,7 @@ export default function ProjectDetail() {
 
         <div className="mb-8">
           <div className="aspect-video bg-gray-200 rounded-2xl flex items-center justify-center">
-            <Image src={project.image} alt={project.title} width={1000} height={1000} />
+            <Image src={project.image} alt={project.title} width={1000} height={1000} unoptimized />
           </div>
         </div>
 
