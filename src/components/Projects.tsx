@@ -22,15 +22,24 @@ export default function Projects() {
           }
         />
 
-        <div className="flex gap-6 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 px-4 max-w-[900px] mx-auto">
+        <div className="flex gap-6 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 max-w-[1050px] mx-auto justify-center">
           {projects.map(project => (
             <Link
               key={project.id}
               href={`/project/${project.id}`}
-              className="group bg-white rounded-xl shadow-md overflow-hidden flex-shrink-0 w-80"
+              className="group bg-white rounded-xl shadow-md overflow-hidden flex-shrink-0 w-80 relative"
               onMouseEnter={() => setHoveredProject(project.id)}
               onMouseLeave={() => setHoveredProject(null)}
             >
+              <div className="absolute top-3 right-3 z-10">
+                <span
+                  className={`px-2 py-1 text-xs font-normal rounded-full ${
+                    project.soloOrTeam === "team" ? "bg-green-300 text-green-800" : "bg-orange-300 text-orange-800"
+                  }`}
+                >
+                  {project.soloOrTeam === "team" ? "2인 팀 프로젝트" : "개인 프로젝트"}
+                </span>
+              </div>
               <div className="aspect-video bg-gray-200 flex items-center justify-center overflow-hidden relative">
                 <Image
                   src={project.staticImage || project.image}

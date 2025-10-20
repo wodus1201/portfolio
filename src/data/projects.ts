@@ -145,11 +145,11 @@ export const projectsData: Project[] = [
     id: "project-3",
     title: "COMIC:tint",
     soloOrTeam: "solo",
-    duration: "2025.10 ~",
+    duration: "2025.10 ~ 작업 중",
     description:
       "만화 페이지에서 컷을 감지해 분할하고, 선만 깔끔히 추출하여 브러시/팔레트로 원하는 캐릭터를\n채색할 수 있게 해주는 차세대 만화 뷰어 앱",
     image: "/comicTint-preview.gif",
-    staticImage: "/comicTint-static.jpeg",
+    staticImage: "/comicTint-static.png",
     technologies: [
       {
         frontend: ["TypeScript", "React Native", "React Navigation", "React Native Skia"],
