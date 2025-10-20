@@ -22,12 +22,12 @@ export default function Projects() {
           }
         />
 
-        <div className="flex flex-wrap justify-center gap-8">
+        <div className="flex gap-6 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 px-4 max-w-[900px] mx-auto">
           {projects.map(project => (
             <Link
               key={project.id}
               href={`/project/${project.id}`}
-              className="group bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 w-full max-w-sm"
+              className="group bg-white rounded-xl shadow-md overflow-hidden flex-shrink-0 w-80"
               onMouseEnter={() => setHoveredProject(project.id)}
               onMouseLeave={() => setHoveredProject(null)}
             >

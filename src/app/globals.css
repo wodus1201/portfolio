@@ -35,7 +35,6 @@ body {
   font-family: var(--font-geist-sans), sans-serif;
 }
 
-/* GIF 호버 애니메이션을 위한 스타일 */
 .project-static-image {
   animation-play-state: paused !important;
   animation: none !important;
@@ -45,11 +44,28 @@ body {
   animation-play-state: running !important;
 }
 
-/* 모든 GIF 이미지의 기본 애니메이션을 정지 */
 img[src$=".gif"] {
   animation-play-state: paused !important;
 }
 
 img[src$=".gif"]:hover {
   animation-play-state: running !important;
+}
+
+.scrollbar-thin {
+  scrollbar-width: thin;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  height: 8px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: #f1f5f900;
+  border-radius: 4px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: #cbd5e100;
+  border-radius: 4px;
 }
