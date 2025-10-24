@@ -122,6 +122,7 @@ export default function ProjectDetail() {
 
         <div className="mb-8">
           <div className="aspect-video bg-gray-200 rounded-2xl overflow-hidden">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
           </div>
         </div>

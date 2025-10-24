@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     const response = await fetch("https://api.vercel.com/v1/analytics", {
       headers: {
@@ -21,10 +21,11 @@ export async function GET(request: NextRequest) {
 
     const todayVisitors =
       data.pageviews
-        ?.filter((pv: any) => pv.date === today)
-        .reduce((sum: number, pv: any) => sum + (pv.pageviews || 0), 0) || 0;
+        ?.filter((pv: { date: string; pageviews?: number }) => pv.date === today)
+        .reduce((sum: number, pv: { pageviews?: number }) => sum + (pv.pageviews || 0), 0) || 0;
 
-    const totalVisitors = data.pageviews?.reduce((sum: number, pv: any) => sum + (pv.pageviews || 0), 0) || 0;
+    const totalVisitors =
+      data.pageviews?.reduce((sum: number, pv: { pageviews?: number }) => sum + (pv.pageviews || 0), 0) || 0;
 
     return NextResponse.json({
       todayVisitors,
