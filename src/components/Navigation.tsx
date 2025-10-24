@@ -3,6 +3,7 @@
 import { ArrowUpIcon } from "lucide-react";
 import { useScroll, scrollToSection } from "@/hooks/useScroll";
 import TooltipButton from "./TooltipButton";
+import VisitorStats from "./VisitorStats";
 
 export default function Navigation() {
   const isScrolled = useScroll(50);
@@ -14,7 +15,9 @@ export default function Navigation() {
       >
         <div className="w-full mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <div className="text-4xl font-bold text-custom-700">Jason&apos;s Portfolio</div>
+            <div className="text-4xl font-bold text-custom-700 flex items-center gap-2">
+              Jason&apos;s Portfolio <VisitorStats />
+            </div>
             <div className="hidden md:flex space-x-4">
               {[
                 { id: "hero", label: "Home" },
