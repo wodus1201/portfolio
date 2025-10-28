@@ -59,12 +59,12 @@ export default function Hero() {
           박재연입니다.
         </h1>
         <div className="flex flex-col sm:flex-row gap-4 justify-center w-full mx-auto">
-          <Button onClick={() => scrollToSection("projects")} className="w-full sm:w-auto min-w-[160px] sm:min-w-0">
+          <Button onClick={() => scrollToSection("projects", 72)} className="w-full sm:w-auto min-w-[160px] sm:min-w-0">
             프로젝트 보기
           </Button>
           <Button
             variant="outline"
-            onClick={() => scrollToSection("contact")}
+            onClick={() => scrollToSection("contact", 72)}
             className="w-full sm:w-auto min-w-[160px] sm:min-w-0"
           >
             연락하기
